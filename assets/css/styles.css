@@ -36,9 +36,9 @@
   --fs-smaller: .75rem;
   --fs-small: .825rem;
   --fs-normal: clamp(.95rem, 2vw + .05rem, 1rem);
-  --fs-h3: 1.2rem;
-  --fs-h2: clamp(1.5rem, 5vw + .05rem, 2.25rem);
-  --fs-h1: clamp(2.5rem, 8vw + .05rem, 4rem);
+  --fs-h3: clamp(1.2rem, 3vw + .05rem, 1.5rem);
+  --fs-h2: clamp(1.7rem, 5vw + .05rem, 2.25rem);
+  --fs-h1: clamp(2.7rem, 8vw + .05rem, 4rem);
 
   /*PC*/
   /*--fs-smaller: .81rem;*/
@@ -85,6 +85,7 @@ img,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 ul {
@@ -145,6 +146,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
+  background-color: var(--clr-body);
   z-index: var(--z-fixed);
 }
 
@@ -195,7 +197,7 @@ nav a:hover {
   .theme-icon {
     position: absolute;
     right: 3rem;
-    top: min(-2rem, -4.7vw);
+    top: min(-2.6rem, -5.7vw);
   }
 
   .show-menu {
@@ -214,11 +216,11 @@ main .container {
 }
 
 /*Home*/
-.home > div {
+.home .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
-  gap: 20px;
+  gap: clamp(20px, 2vw, 35px);
   margin-top: calc(var(--header-height) + 20px);
 }
 
@@ -227,8 +229,54 @@ main .container {
 }
 
 @media screen and (max-width: 576px) {
-  .home > div {
+  .home .container {
     grid-template-columns: 1fr;
     justify-items: start;
+  }
+}
+
+
+/*About*/
+.about {
+  text-align: center;
+}
+
+.about .container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  gap: clamp(50px, 7vw, 150px);
+  margin-top: calc(var(--header-height) + 20px);
+}
+
+.about span {
+  display: block;
+  color: var(--clr-primary-400);
+  font-weight: var(--fw-regular);
+  margin-bottom: var(--mg-1);
+}
+
+.about h2,
+.about p {
+  margin-bottom: var(--mg-3);
+}
+
+.about img {
+  border-radius: 10px;
+  order: -1;
+}
+
+@media screen and (max-width: 576px) {
+  .about .container {
+    grid-template-columns: 1fr;
+  }
+
+  .about h2 {
+    padding: 0 var(--mg-6);
+  }
+
+  .about img {
+    order: 0;
+    width: 300px;
   }
 }
