@@ -60,7 +60,10 @@
   --z-tooltip: 10;
   --z-fixed: 50;
 
+  /*TODO: split this for small and big screen*/
   --header-height: clamp(4rem, 9vw, 5.5rem);
+
+  --gap: clamp(20px, 2vw, 35px);
 }
 
 
@@ -95,6 +98,7 @@ ul {
 
 /*Styles*/
 body {
+  --padding-top: calc(var(--header-height) + 20px);
   /*margin: var(--header-height) 0 0 0;*/
   scroll-behavior: smooth;
   font-family: var(--font), system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -114,8 +118,12 @@ body {
   cursor: pointer;
 }
 
+.btn:hover {
+  background-color: var(--clr-primary-500);
+}
+
 .container {
-  max-width: min(90%, 1024px);
+  max-width: min(85%, 950px);
   margin: 0 auto;
 }
 
@@ -141,6 +149,12 @@ nav i {
 }
 
 
+nav a:hover,
+footer a:hover {
+  color: var(--clr-primary-400);
+}
+
+
 /*Header / Navbar*/
 header {
   /*TODO: Check this later*/
@@ -150,6 +164,10 @@ header {
   left: 0;
   background-color: var(--clr-body);
   z-index: var(--z-fixed);
+}
+
+header .container {
+  max-width: min(90%, 1024px);
 }
 
 nav {
@@ -176,10 +194,6 @@ nav {
   display: none;
 }
 
-nav a:hover {
-  color: var(--clr-primary-400);
-}
-
 @media screen and (max-width: 768px) {
   .nav-menu {
     flex-direction: column;
@@ -199,6 +213,7 @@ nav a:hover {
   .theme-icon {
     position: absolute;
     right: 4rem;
+    /*TODO: after splitting the --header-height fix this top*/
     top: min(-2.6rem, -5.7vw);
   }
 
@@ -213,9 +228,8 @@ nav a:hover {
 
 
 /*Main*/
-main .container {
-  max-width: min(85%, 950px);
-  padding-top: calc(var(--header-height) + 20px);
+section {
+  padding-top: var(--padding-top);
 }
 
 main span {
@@ -230,7 +244,7 @@ main span {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
-  gap: clamp(20px, 2vw, 35px);
+  gap: var(--gap);
 }
 
 .home h2 {
@@ -372,7 +386,7 @@ main span {
   display: grid;
   grid-template-columns: 2fr 1fr;
   place-items: center;
-  gap: clamp(20px, 2vw, 35px);
+  gap: var(--gap);
 }
 
 @media screen and (max-width: 576px) {
@@ -384,4 +398,59 @@ main span {
   .contact-data p {
     margin: var(--mg-3) 0;
   }
+}
+
+
+/*Footer*/
+footer {
+  padding: var(--padding-top) 0 var(--mg-4);
+}
+
+footer h3 {
+  font-size: calc(var(--fs-h3) + 5px);
+  margin-bottom: var(--mg-2);
+}
+
+footer .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: center;
+  gap: var(--gap);
+}
+
+.footer-logo {
+  display: block;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semibold);
+  color: var(--clr-primary-400);
+}
+
+.footer span {
+  display: inline-block;
+  font-size: var(--fs-small);
+  margin: var(--mg-1) 0 var(--mg-3);
+}
+
+.social-icon {
+  font-size: var(--fs-h2);
+  margin-right: var(--mg-2);
+  color: var(--clr-header);
+}
+
+.footer li {
+  margin-bottom: var(--mg-1);
+}
+
+.footer-copy {
+  font-size: var(--fs-small);
+  margin-top: var(--mg-5);
+  text-align: center;
+}
+
+.footer-copy a {
+  font-weight: var(--fw-semibold);
+}
+
+.footer-copy a:hover {
+  color: var(--clr-primary-400);
 }
