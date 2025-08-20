@@ -13,17 +13,17 @@
   --clr-primary-400: hsl(42, 100%, 67%);
   --clr-primary-500: hsl(37, 67%, 60%);
 
-  --clr-card-hsl: hsl(0, 0%, 100%);
-  --clr-body-hsl: hsl(50, 60%, 99%);
+  --clr-card-hsl: 0, 0%, 100%;
+  --clr-body-hsl: 50, 60%, 99%;
   --clr-text-hsl-400: hsl(0, 0%, 65%);
   --clr-text-hsl-600: hsl(0, 0%, 44%);
-  --clr-header-hsl: hsl(0, 0%, 22%);
+  --clr-header-hsl: 0, 0%, 22%;
 
-  --clr-card: var(--clr-card-hsl);
-  --clr-body: var(--clr-body-hsl);
+  --clr-card: hsl(var(--clr-card-hsl));
+  --clr-body: hsl(var(--clr-body-hsl));
   --clr-text-500: var(--clr-text-hsl-400);
   --clr-text-600: var(--clr-text-hsl-600);
-  --clr-header: var(--clr-header-hsl);
+  --clr-header: hsl(var(--clr-header-hsl));
 
   /*Font Weight*/
   --fw-regular: 500;
@@ -35,8 +35,8 @@
   /*Phone*/
   --fs-smaller: .75rem;
   --fs-small: .825rem;
-  --fs-normal: clamp(.95rem, 2vw + .05rem, 1rem);
-  --fs-h3: clamp(1.2rem, 3vw + .05rem, 1.35rem);
+  --fs-normal: clamp(.9rem, 2vw + .05rem, 1rem);
+  --fs-h3: clamp(1rem, 3vw + .05rem, 1.2rem);
   --fs-h2: clamp(1.7rem, 5vw + .05rem, 2.25rem);
   --fs-h1: clamp(2.7rem, 8vw + .05rem, 4rem);
 
@@ -94,12 +94,10 @@ ul {
 
 
 /*Styles*/
-html {
-  font-family: var(--font), system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
-
 body {
   /*margin: var(--header-height) 0 0 0;*/
+  scroll-behavior: smooth;
+  font-family: var(--font), system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: var(--fs-normal);
   background-color: var(--clr-body);
   color: var(--clr-text-600);
@@ -217,7 +215,7 @@ nav a:hover {
 /*Main*/
 main .container {
   max-width: min(85%, 950px);
-  margin-top: calc(var(--header-height) + 20px);
+  padding-top: calc(var(--header-height) + 20px);
 }
 
 main span {
@@ -304,7 +302,7 @@ main span {
 .services-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: clamp(20px, 3vw, 50px);
+  gap: clamp(20px, 5vw, 50px);
   margin-top: var(--mg-6);
 }
 
@@ -313,3 +311,57 @@ main span {
 }
 
 
+/*Menu*/
+.menu {
+  --b-radius: 10px;
+  text-align: center;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: clamp(20px, 4vw, 70px);
+  margin-top: var(--mg-6);
+}
+
+.menu-card {
+  position: relative;
+  background-color: var(--clr-card);
+  border-radius: var(--b-radius);
+  box-shadow: 0 2px 5px hsla(var(--clr-header-hsl), 0.1);
+  padding: clamp(13px, 2vw, 25px);
+  text-align: initial;
+}
+
+.menu-card img {
+  width: 130px;
+  margin: 0 auto var(--mg-2);
+}
+
+.menu-card p {
+  margin: var(--mg-1) 0 var(--mg-2);
+}
+
+.menu-card span {
+  font-weight: var(--fw-semibold);
+  color: var(--clr-header);
+}
+
+.menu-card .btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 8px 15px;
+  border-radius: var(--b-radius) 0;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .menu-card img {
+    width: 100px;
+  }
+}
