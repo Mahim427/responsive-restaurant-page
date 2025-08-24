@@ -17,16 +17,48 @@ navLinks.forEach(link => {
 })
 
 
+// Navbar dynamic coloring on different Sections
+const sections = document.querySelectorAll('section');
+
+// Set threshold based on screen size
+function getThreshold() {
+    if (window.innerWidth < 768) {
+        return 0.3;
+    } else {
+        return 0.8;
+    }
+}
+
+const mainObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Add active class to corresponding link
+            const id = entry.target.id;
+            const activeLink = document.querySelector(`a[href="#${id}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+    })
+}, {
+    threshold: getThreshold(),
+})
+
+sections.forEach(section => {
+    mainObserver.observe(section);
+})
+
+
 // Header Scroll Shadow
 const header = document.querySelector('header');
 const firstSec = document.querySelector('#home');
-console.log(firstSec);
 
 const headObserver = new IntersectionObserver(([entry]) => {
     header.classList.toggle('scroll-shadow', !entry.isIntersecting);
 }, {
-    throttle: 0,
-    rootMargin: `${firstSec.offsetHeight / -1.2}px 0px 0px 0px`,
+    threshold: 0.9,
 });
 
 headObserver.observe(firstSec);
