@@ -113,6 +113,7 @@ body {
   border: none;
   border-radius: 8px;
   box-shadow: 0 1px 5px var(--clr-shadow);
+  transition: .4s;
   cursor: pointer;
 }
 
@@ -144,6 +145,24 @@ h3 {
 i {
   cursor: pointer;
   color: inherit;
+}
+
+
+/*Scroll Top*/
+.scroll-top {
+  position: fixed;
+  bottom: -20%;
+  right: 20px;
+  font-size: 1.8rem;
+  padding: 4px;
+  line-height: 1;
+  visibility: hidden;
+  z-index: var(--z-tooltip);
+}
+
+.scroll-top.active {
+  bottom: 20px;
+  visibility: visible;
 }
 
 
@@ -194,7 +213,7 @@ nav {
   display: none;
 }
 
-.active {
+nav .active {
   color: var(--clr-primary-400);
 }
 
@@ -215,7 +234,7 @@ nav {
 
   #theme-icon {
     position: absolute;
-    right: min(80px, 12vw);
+    right: min(80px, 14vw);
     top: calc(var(--header-height) / -2 - 8px);
   }
 

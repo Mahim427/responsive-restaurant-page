@@ -20,6 +20,7 @@ navLinks.forEach(link => {
 // Navbar dynamic coloring on different Sections
 const sections = document.querySelectorAll('section');
 
+
 // Set threshold based on screen size
 function getThreshold() {
     if (window.innerWidth < 768) {
@@ -78,3 +79,17 @@ themeBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
 })
 
+
+// Scroll Top
+const scrollTopBtn = document.querySelector('.scroll-top');
+
+scrollTopBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+    });
+})
+
+window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('active', window.scrollY > 600);
+})
