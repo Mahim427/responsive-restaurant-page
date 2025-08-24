@@ -8,6 +8,16 @@ toggle.addEventListener('click', () => {
 })
 
 
+// Auto Remove Menu on Mobile
+const navLinks = document.querySelectorAll('.nav-link');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        document.querySelector('.nav-menu').classList.remove('show-menu');
+    });
+})
+
+
 // Dark / Light Theme
 const themeBtn = document.querySelector('#theme-icon');
 console.log(themeBtn);

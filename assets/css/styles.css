@@ -90,10 +90,13 @@ ul {
 
 
 /*Styles*/
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   --padding-top: calc(var(--header-height) + 20px);
 
-  scroll-behavior: smooth;
   font-family: var(--font), system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: var(--fs-normal);
   background-color: var(--clr-body);
