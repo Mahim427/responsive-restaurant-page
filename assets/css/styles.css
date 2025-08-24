@@ -2,28 +2,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 :root {
-
-  /*Color*/
-  /*--clr-primary-hsl-400: hsl(42, 100%, 67%);*/
-  /*--clr-primary-hsl-500: 37, 67%, 60%;*/
-
-  /*--clr-primary-400: hsl(var(--clr-primary-hsl-400));*/
-  /*--clr-primary-500: hsl(var(--clr-primary-hsl-500));*/
-
   --clr-primary-400: hsl(42, 100%, 67%);
   --clr-primary-500: hsl(37, 67%, 60%);
 
-  --clr-card-hsl: 0, 0%, 100%;
-  --clr-body-hsl: 50, 60%, 99%;
-  --clr-text-hsl-400: hsl(0, 0%, 65%);
-  --clr-text-hsl-600: hsl(0, 0%, 44%);
-  --clr-header-hsl: 0, 0%, 22%;
+  --clr-text-500-hsl: 0, 0%, 43.92%;
+  --clr-title-hsl: 0, 0%, 22.35%;
 
-  --clr-card: hsl(var(--clr-card-hsl));
-  --clr-body: hsl(var(--clr-body-hsl));
-  --clr-text-500: var(--clr-text-hsl-400);
-  --clr-text-600: var(--clr-text-hsl-600);
-  --clr-header: hsl(var(--clr-header-hsl));
+  --clr-card: hsl(0, 0%, 100%);
+  --clr-body: hsl(50, 60%, 99.02%);
+  --clr-text-400: hsl(0, 0%, 59%);
+  --clr-text-500: hsl(var(--clr-text-500-hsl));
+  --clr-title: hsl(var(--clr-title-hsl));
+  --clr-shadow: hsla(var(--clr-title-hsl), .1);
 
   /*Font Weight*/
   --fw-regular: 500;
@@ -33,37 +23,40 @@
 
   /*Font Size*/
   /*Phone*/
-  --fs-smaller: .75rem;
-  --fs-small: .825rem;
+  --fs-small: clamp(.8rem, 1vw + .05rem, .85rem);
   --fs-normal: clamp(.9rem, 2vw + .05rem, 1rem);
   --fs-h3: clamp(1rem, 3vw + .05rem, 1.2rem);
   --fs-h2: clamp(1.7rem, 5vw + .05rem, 2.25rem);
   --fs-h1: clamp(2.7rem, 8vw + .05rem, 4rem);
 
-  /*PC*/
-  /*--fs-smaller: .81rem;*/
-  /*--fs-small: .885rem;*/
-  /*--fs-normal: 1.15rem;*/
-  /*--fs-h3: 1.5rem;*/
-  /*--fs-h2: 2.25rem;*/
-  /*--fs-h1: 4rem;*/
-
-  /*Margins*/
-  --mg-1: .5rem;
-  --mg-2: 1rem;
-  --mg-3: 1.5rem;
-  --mg-4: 2rem;
-  --mg-5: 2.5rem;
-  --mg-6: 3rem;
+  /*Distance -> used for margins / paddings*/
+  --d-1: 8px;
+  --d-2: 16px;
+  --d-3: 24px;
+  --d-4: 32px;
+  --d-5: 40px;
+  --d-6: 48px;
 
   /*Z Index*/
   --z-tooltip: 10;
   --z-fixed: 50;
 
-  /*TODO: split this for small and big screen*/
   --header-height: clamp(4rem, 9vw, 5.5rem);
 
   --gap: clamp(20px, 2vw, 35px);
+}
+
+
+/*Dark theme Variables*/
+body.dark {
+  --clr-text-500-hsl: 60, 5.15%, 80.98%;
+  --clr-title-hsl: 60, 4%, 95%;
+
+  --clr-card: hsl(60, 4.35%, 18.04%);
+  --clr-body: hsl(60, 5.71%, 13.73%);
+  --clr-text-500: hsl(var(--clr-text-500-hsl));
+  --clr-title: hsl(var(--clr-title-hsl));
+  --clr-shadow: hsla(var(--clr-title-hsl), .5);
 }
 
 
@@ -99,22 +92,24 @@ ul {
 /*Styles*/
 body {
   --padding-top: calc(var(--header-height) + 20px);
-  /*margin: var(--header-height) 0 0 0;*/
+
   scroll-behavior: smooth;
   font-family: var(--font), system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: var(--fs-normal);
   background-color: var(--clr-body);
-  color: var(--clr-text-600);
+  color: var(--clr-text-500);
 }
 
 .btn {
   display: inline-block;
   font: inherit;
-  color: #ffffff;
+  font-weight: var(--fw-regular);
+  color: var(--clr-body);
   padding: 15px 20px;
   background: var(--clr-primary-400);
   border: none;
   border-radius: 8px;
+  box-shadow: 0 1px 5px var(--clr-shadow);
   cursor: pointer;
 }
 
@@ -134,16 +129,16 @@ h1 {
 
 h2 {
   font-size: var(--fs-h2);
-  color: var(--clr-header);
+  color: var(--clr-title);
 }
 
 h3 {
   font-size: var(--fs-h3);
-  color: var(--clr-header);
+  color: var(--clr-title);
 }
 
 /*Icons*/
-nav i {
+i {
   cursor: pointer;
   color: inherit;
 }
@@ -157,7 +152,6 @@ footer a:hover {
 
 /*Header / Navbar*/
 header {
-  /*TODO: Check this later*/
   width: 100%;
   position: fixed;
   top: 0;
@@ -172,7 +166,6 @@ header .container {
 
 nav {
   font-weight: var(--fw-regular);
-  /*max-width: min(95%, 1024px);*/
   height: var(--header-height);
   display: flex;
   justify-content: space-between;
@@ -202,19 +195,17 @@ nav {
     top: -100%;
     left: 0;
     width: 100%;
-    padding: var(--mg-2);
+    padding: var(--d-2);
     transition: .4s;
     background-color: var(--clr-body);
-    box-shadow: 0 4px 4px hsla(0, 0%, 0%, .1);
+    box-shadow: 0 4px 4px var(--clr-shadow);
     border-radius: 0 0 15px 15px;
-    z-index: -1;
   }
 
-  .theme-icon {
+  #theme-icon {
     position: absolute;
-    right: 4rem;
-    /*TODO: after splitting the --header-height fix this top*/
-    top: min(-2.6rem, -5.7vw);
+    right: min(80px, 12vw);
+    top: calc(var(--header-height) / -2 - 8px);
   }
 
   .show-menu {
@@ -236,7 +227,7 @@ main span {
   display: block;
   color: var(--clr-primary-400);
   font-weight: var(--fw-regular);
-  margin-bottom: var(--mg-1);
+  margin-bottom: var(--d-1);
 }
 
 /*Home*/
@@ -248,7 +239,7 @@ main span {
 }
 
 .home h2 {
-  margin: var(--mg-3) 0;
+  margin: var(--d-3) 0;
 }
 
 @media screen and (max-width: 576px) {
@@ -273,7 +264,7 @@ main span {
 
 .about h2,
 .about p {
-  margin-bottom: var(--mg-3);
+  margin-bottom: var(--d-3);
 }
 
 .about img {
@@ -287,7 +278,7 @@ main span {
   }
 
   .about h2 {
-    padding: 0 var(--mg-6);
+    padding: 0 var(--d-6);
   }
 
   .about img {
@@ -303,7 +294,7 @@ main span {
 }
 
 .services h3 {
-  margin: var(--mg-2) 0 var(--mg-1);
+  margin: var(--d-2) 0 var(--d-1);
 }
 
 .services svg {
@@ -317,11 +308,11 @@ main span {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: clamp(20px, 5vw, 50px);
-  margin-top: var(--mg-6);
+  margin-top: var(--d-6);
 }
 
 .service-card p {
-  padding: 0 var(--mg-2);
+  padding: 0 var(--d-2);
 }
 
 
@@ -336,30 +327,30 @@ main span {
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   gap: clamp(20px, 4vw, 70px);
-  margin-top: var(--mg-6);
+  margin-top: var(--d-6);
 }
 
 .menu-card {
   position: relative;
   background-color: var(--clr-card);
   border-radius: var(--b-radius);
-  box-shadow: 0 2px 5px hsla(var(--clr-header-hsl), 0.1);
+  box-shadow: 0 2px 5px var(--clr-shadow);
   padding: clamp(13px, 2vw, 25px);
   text-align: initial;
 }
 
 .menu-card img {
   width: 130px;
-  margin: 0 auto var(--mg-2);
+  margin: 0 auto var(--d-2);
 }
 
 .menu-card p {
-  margin: var(--mg-1) 0 var(--mg-2);
+  margin: var(--d-1) 0 var(--d-2);
 }
 
 .menu-card span {
   font-weight: var(--fw-semibold);
-  color: var(--clr-header);
+  color: var(--clr-title);
 }
 
 .menu-card .btn {
@@ -396,19 +387,19 @@ main span {
   }
 
   .contact-data p {
-    margin: var(--mg-3) 0;
+    margin: var(--d-3) 0;
   }
 }
 
 
 /*Footer*/
 footer {
-  padding: var(--padding-top) 0 var(--mg-4);
+  padding: var(--padding-top) 0 var(--d-4);
 }
 
 footer h3 {
   font-size: calc(var(--fs-h3) + 5px);
-  margin-bottom: var(--mg-2);
+  margin-bottom: var(--d-2);
 }
 
 footer .container {
@@ -428,22 +419,23 @@ footer .container {
 .footer span {
   display: inline-block;
   font-size: var(--fs-small);
-  margin: var(--mg-1) 0 var(--mg-3);
+  margin: var(--d-1) 0 var(--d-3);
 }
 
 .social-icon {
   font-size: var(--fs-h2);
-  margin-right: var(--mg-2);
-  color: var(--clr-header);
+  margin-right: var(--d-2);
+  color: var(--clr-title);
 }
 
 .footer li {
-  margin-bottom: var(--mg-1);
+  margin-bottom: var(--d-1);
 }
 
 .footer-copy {
   font-size: var(--fs-small);
-  margin-top: var(--mg-5);
+  margin-top: var(--d-5);
+  color: var(--clr-text-400);
   text-align: center;
 }
 
