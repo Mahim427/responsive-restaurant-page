@@ -1,5 +1,4 @@
 // Show Menu
-console.log("Showing Menu");
 const toggle = document.querySelector('.menu-icon');
 const menu = document.querySelector('.nav-menu');
 
@@ -18,9 +17,23 @@ navLinks.forEach(link => {
 })
 
 
+// Header Scroll Shadow
+const header = document.querySelector('header');
+const firstSec = document.querySelector('#home');
+console.log(firstSec);
+
+const headObserver = new IntersectionObserver(([entry]) => {
+    header.classList.toggle('scroll-shadow', !entry.isIntersecting);
+}, {
+    throttle: 0,
+    rootMargin: `${firstSec.offsetHeight / -1.2}px 0px 0px 0px`,
+});
+
+headObserver.observe(firstSec);
+
+
 // Dark / Light Theme
 const themeBtn = document.querySelector('#theme-icon');
-console.log(themeBtn);
 
 themeBtn.addEventListener('click', () => {
     const currentTheme = document.body.className;

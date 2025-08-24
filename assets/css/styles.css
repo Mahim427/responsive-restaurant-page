@@ -163,6 +163,10 @@ header {
   z-index: var(--z-fixed);
 }
 
+.scroll-shadow {
+  box-shadow: 0 2px 8px 0 var(--clr-shadow);
+}
+
 header .container {
   max-width: min(90%, 1024px);
 }
